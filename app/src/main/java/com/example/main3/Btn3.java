@@ -86,6 +86,16 @@ public class Btn3 extends AppCompatActivity {
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                if (audioManager.getRingerMode() == AudioManager.RINGER_MODE_VIBRATE) {
+                    // 진동 모드일 경우
+                    Toast.makeText(getApplicationContext(), "set alarm sound mode", Toast.LENGTH_SHORT).show();
+                    audioManager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
+                }
+                else if (audioManager.getRingerMode() == AudioManager.RINGER_MODE_SILENT) {
+                    // 무음 모드일 경우
+                    Toast.makeText(getApplicationContext(), "set alarm sound mode", Toast.LENGTH_SHORT).show();
+                    audioManager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
+                }
                 setVolumeControlStream(seekBar.getProgress());
                 textView.setText("VOLUME Setting : "+seekBar.getProgress());
                 setVolumeControlStream(AudioManager.STREAM_ALARM);
