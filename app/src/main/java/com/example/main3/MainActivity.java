@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        setTitle("ONMAJU");
         Button btn1 = (Button) findViewById(R.id.btn1);
         Button btn2 = (Button) findViewById(R.id.btn2);
         Button btn3 = (Button) findViewById(R.id.btn3);

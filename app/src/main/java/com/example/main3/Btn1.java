@@ -10,5 +10,6 @@ public class Btn1 extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle saveInstanceState){
         super.onCreate(saveInstanceState);
         setContentView(R.layout.btn1);
+        setTitle("CAMERA");
     }
 }

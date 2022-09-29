@@ -5,7 +5,10 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="camera">
+        android:text="This is not the camera reservation time."
+        android:id="@+id/cameraText"
+        android:gravity="center"
+        android:visibility="visible">
 
     </TextView>
 
