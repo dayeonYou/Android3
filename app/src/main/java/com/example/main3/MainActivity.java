@@ -9,7 +9,9 @@ import android.os.Bundle;
 import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
+import java.lang.*;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -63,8 +65,20 @@ public class MainActivity extends AppCompatActivity {
             default:
                 break;
         }
-
-
+        String contentText = "운송장있음";
+        int waybill = 12345;
+        boolean b = contentText.contains("운송장");
+        TextView mainText1 = (TextView) findViewById(R.id.noParcel);
+        TextView mainText2 = (TextView) findViewById(R.id.yesParcel);
+        if(b){ //받은 택배 있음
+            mainText1.setVisibility(View.GONE);
+            mainText2.setVisibility(View.VISIBLE);
+            mainText2.append("\n\n 택배 정보\n운송장 번호 : 1234556");
+        }
+        else{ //받은 택배 없음
+            mainText1.setVisibility(View.VISIBLE);
+            mainText2.setVisibility(View.GONE);
+        }
     }
 
     private boolean isConnected() {
@@ -78,4 +92,5 @@ public class MainActivity extends AppCompatActivity {
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
         return activeNetwork.getType();
     }
+
 }

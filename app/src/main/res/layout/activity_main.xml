@@ -24,6 +24,19 @@
                 android:layout_marginTop="200dp"
                 android:text="no parcel now"
                 android:textSize="18dp"
+                android:id="@+id/noParcel"
+                android:visibility="gone"
+                />
+
+            <TextView
+                android:id="@+id/yesParcel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="parcel arrival"
+                android:textSize="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="15dp"
+                android:visibility="gone"
                 />
 
         </LinearLayout>
