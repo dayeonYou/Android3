@@ -13,9 +13,11 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center_vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="550dp">
+            android:layout_height="550dp"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -34,11 +36,60 @@
                 android:layout_height="wrap_content"
                 android:text="parcel arrival"
                 android:textSize="30dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="15dp"
-                android:visibility="gone"
+                android:visibility="visible"
+                android:layout_marginTop="@dimen/marginTop1"
+                android:layout_marginLeft="@dimen/marginLeft1"
                 />
 
+            <TextView
+                android:id="@+id/informdationT"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/marginLeft1"
+                android:layout_marginTop="@dimen/marginTop2"
+                android:text="information of parcel"
+                android:textSize="23dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/waybillT"
+                android:textSize="20dp"
+                android:textColor="@color/black"
+                android:text="waybill_"
+                android:layout_marginLeft="@dimen/marginLeft1"
+                android:layout_marginTop="@dimen/marginTop1"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/recipientT"
+                android:textSize="20dp"
+                android:textColor="@color/black"
+                android:text="recipient_"
+                android:layout_marginLeft="@dimen/marginLeft1"
+                android:layout_marginTop="@dimen/marginTop1"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/addressT"
+                android:textSize="20dp"
+                android:textColor="@color/black"
+                android:text="address_"
+                android:layout_marginLeft="@dimen/marginLeft1"
+                android:layout_marginTop="@dimen/marginTop1"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/checkT"
+                android:textSize="20dp"
+                android:textColor="@color/black"
+                android:text="Is it your parcel?"
+                android:layout_marginLeft="@dimen/marginLeft1"
+                android:layout_marginTop="@dimen/marginTop1"
+                />
         </LinearLayout>
         <TableLayout
             android:layout_width="match_parent"
