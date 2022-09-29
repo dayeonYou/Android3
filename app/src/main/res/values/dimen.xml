@@ -2,5 +2,5 @@
 <resources>
     <dimen name="marginLeft1">15dp</dimen>
     <dimen name="marginTop1">15dp</dimen>
-    <dimen name="marginTop2">290dp</dimen>
+    <dimen name="marginTop2">270dp</dimen>
 </resources>
