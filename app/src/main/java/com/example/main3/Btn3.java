@@ -1,5 +1,7 @@
 package com.example.main3;
 
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.media.Ringtone;
@@ -22,6 +24,7 @@ public class Btn3 extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle saveInstanceState){
         super.onCreate(saveInstanceState);
         setContentView(R.layout.btn3);
+        setTitle("Setting");
         Button explain = (Button) findViewById(R.id.explain);
         explain.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -30,12 +33,22 @@ public class Btn3 extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        AudioManager audioManager;
+        audioManager = (AudioManager)getSystemService(Context.AUDIO_SERVICE);
         Button set_btn2 = (Button) findViewById(R.id.set_btn2);
         set_btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //토스트알람
                 Toast.makeText(getApplicationContext(), "set alarm sound mode", Toast.LENGTH_SHORT).show();
+                if (audioManager.getRingerMode() == AudioManager.RINGER_MODE_VIBRATE) {
+                    // 진동 모드일 경우
+                    audioManager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
+                }
+                else if (audioManager.getRingerMode() == AudioManager.RINGER_MODE_SILENT) {
+                    // 무음 모드일 경우
+                    audioManager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
+                }
                 //소리 알람
                 Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
                 Ringtone ringtone = RingtoneManager.getRingtone(getApplicationContext(),notification);
@@ -50,6 +63,14 @@ public class Btn3 extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "set alarm vibration mode", Toast.LENGTH_SHORT).show();
                 Vibrator vib = (Vibrator) getSystemService(VIBRATOR_SERVICE);
                 vib.vibrate(1000);
+                if (audioManager.getRingerMode() == AudioManager.RINGER_MODE_NORMAL) {
+                    // 벨소리 모드일 경우
+                    audioManager.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
+                }
+                else if (audioManager.getRingerMode() == AudioManager.RINGER_MODE_SILENT) {
+                    // 무음 모드일 경우
+                    audioManager.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
+                }
             }
         });
         final Switch set_btn4 = (Switch) findViewById(R.id.switchView);

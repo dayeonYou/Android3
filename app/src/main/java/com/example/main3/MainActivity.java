@@ -1,13 +1,17 @@
 package com.example.main3;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.NotificationManager;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.content.Intent;
 import android.os.Vibrator;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -29,6 +33,9 @@ public class MainActivity extends AppCompatActivity {
         Button btn1 = (Button) findViewById(R.id.btn1);
         Button btn2 = (Button) findViewById(R.id.btn2);
         Button btn3 = (Button) findViewById(R.id.btn3);
+
+
+
 
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override

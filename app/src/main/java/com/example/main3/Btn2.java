@@ -13,7 +13,7 @@ public class Btn2 extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.alarm1);
-
+        setTitle("Reservation");
         Button btnMake = (Button) findViewById(R.id.btnMake);
         btnMake.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
