@@ -1,5 +1,6 @@
 package com.example.main3;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -33,9 +34,6 @@ public class MainActivity extends AppCompatActivity {
         Button btn1 = (Button) findViewById(R.id.btn1);
         Button btn2 = (Button) findViewById(R.id.btn2);
         Button btn3 = (Button) findViewById(R.id.btn3);
-
-
-
 
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,29 +76,28 @@ public class MainActivity extends AppCompatActivity {
             default:
                 break;
         }
+        int count=0;
+        //서버에서 openCV로 추출한 텍스트 가져와서 저장
+        String contentText = "운송장_1234567890 받으시는 분_홍*동 주소_경기도 화성시 운송장2_123456789 받으시는 분_김*수 주소_서울시 마포구";
+        //택배의 개수만큼 문자열 배열에 따로 따로 저장하기 위한 문자열 배열 생성
         ArrayList<String> contentTextArray = new ArrayList<>();
-        //서버에서 openCV로 추출한 텍스르 가져와서 저장
-        String contentText;
-        String recipient,address,waybill;
-        contentTextArray.add("운송장_1234567890 받으시는 분_홍*동 주소_경기도 화성시");
-        contentText = contentTextArray.get(0);
+        //택배의 개수를 운송장이라는 단어로 선별
+        count = countParcel(contentText);
+        for(int i=count;i>=0;i--){
+            String result = returnString(contentText,count);
+            contentTextArray.add(result);
+        }
+        //contentText.add("운송장_1234567890 받으시는 분_홍*동 주소_경기도 화성시");
         boolean b = contentText.contains("운송장");
         TextView mainText1 = (TextView) findViewById(R.id.noParcel);
         TextView mainText2 = (TextView) findViewById(R.id.yesParcel);
-        TextView waybillText = (TextView)findViewById(R.id.waybillT);
-        TextView addressText = (TextView) findViewById(R.id.addressT);
-        TextView recipientText = (TextView) findViewById(R.id.recipientT);
+        TextView information = (TextView) findViewById(R.id.informationT);
 
         if(b){ //받은 택배 있음
             mainText1.setVisibility(View.GONE);
             mainText2.setVisibility(View.VISIBLE);
-            waybill = contentText.replaceAll("[^0-9]","");
-            waybillText.append(waybill);
-            recipient = returnString(contentText,"받으시는 분");
-            recipientText.append(recipient);
-            address = returnString(contentText,"주소");
-            addressText.append(address);
-            boolean parcelYN;
+            //개수만큼!
+            information.append("\n\n"+ contentTextArray.get(0) +"\n");
 
             RadioButton rightParcelBtn = (RadioButton) findViewById(R.id.rightParcel);
             rightParcelBtn.setOnClickListener(new View.OnClickListener() {
@@ -138,13 +135,30 @@ public class MainActivity extends AppCompatActivity {
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
         return activeNetwork.getType();
     }
-    private String returnString(String str,String wd){
+    private String returnString(@NonNull String str, int num){
         String result = null;
-        for(int i=0;i<str.length();i++){
-            if(wd == "받으시는 분") result = str.split(wd)[1].split("주소")[0];
-            else result = str.split(wd)[1];
+        String[] array = str.split("운송장");
+        if(array[0].equals("")){ //운송장이 맨 앞
+            result = "운송장" + array[num-1]; //for 문으로 num 값 계속 바귐
         }
+        else{ //운송장이 가운데
+            char[] compareArr = str.toCharArray();
+            String change = "";
+            for(int i=0;i<str.length();i++){
+                change+=Character.toString(compareArr[i]);
+                if(change.equals("운")){ // 중간의 i번째 글자가 운송장
+
+                }
+            }
+        }
+
         return result;
+    }
+    private int countParcel(@NonNull String str){
+        int count=0;
+        String[] array = str.split("운송장");
+        count = array.length-1;
+        return count;
     }
 
 }

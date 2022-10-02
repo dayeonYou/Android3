@@ -25,7 +25,7 @@
                 android:layout_marginLeft="158dp"
                 android:layout_marginTop="200dp"
                 android:text="no parcel now"
-                android:textSize="18dp"
+                android:textSize="30dp"
                 android:id="@+id/noParcel"
                 android:visibility="gone"
                 />
@@ -42,7 +42,7 @@
                 />
 
             <TextView
-                android:id="@+id/informdationT"
+                android:id="@+id/informationT"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/marginLeft1"
@@ -50,36 +50,36 @@
                 android:text="information of parcel"
                 android:textSize="23dp"
                 />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/waybillT"
-                android:textSize="20dp"
-                android:textColor="@color/black"
-                android:text="waybill_"
-                android:layout_marginLeft="@dimen/marginLeft1"
-                android:layout_marginTop="@dimen/marginTop1"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/recipientT"
-                android:textSize="20dp"
-                android:textColor="@color/black"
-                android:text="recipient_"
-                android:layout_marginLeft="@dimen/marginLeft1"
-                android:layout_marginTop="@dimen/marginTop1"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/addressT"
-                android:textSize="20dp"
-                android:textColor="@color/black"
-                android:text="address_"
-                android:layout_marginLeft="@dimen/marginLeft1"
-                android:layout_marginTop="@dimen/marginTop1"
-                />
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:id="@+id/waybillT"-->
+<!--                android:textSize="20dp"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:text="waybill_"-->
+<!--                android:layout_marginLeft="@dimen/marginLeft1"-->
+<!--                android:layout_marginTop="@dimen/marginTop1"-->
+<!--                />-->
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:id="@+id/recipientT"-->
+<!--                android:textSize="20dp"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:text="recipient_"-->
+<!--                android:layout_marginLeft="@dimen/marginLeft1"-->
+<!--                android:layout_marginTop="@dimen/marginTop1"-->
+<!--                />-->
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:id="@+id/addressT"-->
+<!--                android:textSize="20dp"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:text="address_"-->
+<!--                android:layout_marginLeft="@dimen/marginLeft1"-->
+<!--                android:layout_marginTop="@dimen/marginTop1"-->
+<!--                />-->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
