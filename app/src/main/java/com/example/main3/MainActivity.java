@@ -3,6 +3,8 @@ package com.example.main3;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.NotificationManager;
 import android.content.Context;
@@ -25,7 +27,13 @@ import java.lang.*;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-
+    private ArrayList<MainData> arrayList;
+    private MainAdapter mainAdapter;
+    private RecyclerView recyclerView;
+    private LinearLayoutManager linearLayoutManager;
+    private String contentText2 = "운송장_1234567890 받는분_홍*동 주소_경기도 화성시 운송장2_123456789 받는분_김*수 주소_서울시 마포구";
+    private String contentText = "받는분_홍*동 운송장_1234567890 주소_경기도 화성시 받는분_김*수 운송장2_123456789 주소_서울시 마포구";
+    private ArrayList<String> contentTextArray = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,37 +98,52 @@ public class MainActivity extends AppCompatActivity {
         //contentText.add("운송장_1234567890 받으시는 분_홍*동 주소_경기도 화성시");
         boolean b = contentText.contains("운송장");
         TextView mainText1 = (TextView) findViewById(R.id.noParcel);
-        TextView mainText2 = (TextView) findViewById(R.id.yesParcel);
-        TextView information = (TextView) findViewById(R.id.informationT);
-
+        RecyclerView rv = (RecyclerView) findViewById(R.id.rv);
         if(b){ //받은 택배 있음
             mainText1.setVisibility(View.GONE);
-            mainText2.setVisibility(View.VISIBLE);
-            //개수만큼!
-            information.append("\n\n"+ contentTextArray.get(0) +"\n");
+            rv.setVisibility(View.VISIBLE);
 
-            RadioButton rightParcelBtn = (RadioButton) findViewById(R.id.rightParcel);
-            rightParcelBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Toast.makeText(getApplicationContext(), "It will be processed as a received parcel. Thank you.", Toast.LENGTH_SHORT).show();
-                    Vibrator vib = (Vibrator) getSystemService(VIBRATOR_SERVICE);
-                    vib.vibrate(1000);
-                }
-            });
-            RadioButton wrongParcelBtn = (RadioButton) findViewById(R.id.wrongParcel);
-            wrongParcelBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Toast.makeText(getApplicationContext(), "It is not your parcel.", Toast.LENGTH_SHORT).show();
-                    Vibrator vib = (Vibrator) getSystemService(VIBRATOR_SERVICE);
-                    vib.vibrate(1000);
-                }
-            });
+            recyclerView = (RecyclerView) findViewById(R.id.rv);
+            linearLayoutManager = new LinearLayoutManager(this);
+            recyclerView.setLayoutManager(linearLayoutManager);
+
+            arrayList = new ArrayList<>();
+
+            mainAdapter = new MainAdapter(arrayList);
+            recyclerView.setAdapter(mainAdapter);
+
+            for(int i=1;i<=count;i++){
+                String result = returnString(contentText,i);
+                contentTextArray.add(result);
+            }
+            for(int i=0;i<count;i++){
+                MainData mainData = new MainData(R.mipmap.ic_launcher,"Parcel Arrival","Information of Parcel\n"+contentTextArray.get(i),"Is it your parcel?", "yes","no");
+                arrayList.add(mainData);
+                mainAdapter.notifyDataSetChanged();
+            }
+
+//            RadioButton rightParcelBtn = (RadioButton) findViewById(R.id.rightParcel);
+//            rightParcelBtn.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    Toast.makeText(getApplicationContext(), "It will be processed as a received parcel. Thank you.", Toast.LENGTH_SHORT).show();
+//                    Vibrator vib = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+//                    vib.vibrate(1000);
+//                }
+//            });
+//            RadioButton wrongParcelBtn = (RadioButton) findViewById(R.id.wrongParcel);
+//            wrongParcelBtn.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    Toast.makeText(getApplicationContext(), "It is not your parcel.", Toast.LENGTH_SHORT).show();
+//                    Vibrator vib = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+//                    vib.vibrate(1000);
+//                }
+//            });
         }
         else{ //받은 택배 없음
             mainText1.setVisibility(View.VISIBLE);
-            mainText2.setVisibility(View.GONE);
+            rv.setVisibility(View.GONE);
         }
     }
 
@@ -135,30 +158,24 @@ public class MainActivity extends AppCompatActivity {
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
         return activeNetwork.getType();
     }
-    private String returnString(@NonNull String str, int num){
-        String result = null;
-        String[] array = str.split("운송장");
-        if(array[0].equals("")){ //운송장이 맨 앞
-            result = "운송장" + array[num-1]; //for 문으로 num 값 계속 바귐
-        }
-        else{ //운송장이 가운데
-            char[] compareArr = str.toCharArray();
-            String change = "";
-            for(int i=0;i<str.length();i++){
-                change+=Character.toString(compareArr[i]);
-                if(change.equals("운")){ // 중간의 i번째 글자가 운송장
-
-                }
-            }
-        }
-
-        return result;
-    }
     private int countParcel(@NonNull String str){
         int count=0;
         String[] array = str.split("운송장");
         count = array.length-1;
         return count;
+    }
+    private String returnString(@NonNull String str, int num){
+        String result = null;
+        String[] array = str.split("운송장");
+        //ArrayList<String> array2 = returnString2(str,2);
+        if(array[0].equals("")){ //운송장이 맨 앞
+            result = "운송장" + array[num]; //for 문으로 num 값 계속 바귐
+        }
+        else{
+            array = str.split("받는분");
+            result = "받는분" + array[num]; //for 문으로 num 값 계속 바귐
+        }
+        return result;
     }
 
 }

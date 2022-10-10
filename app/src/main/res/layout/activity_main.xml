@@ -30,88 +30,17 @@
                 android:visibility="gone"
                 />
 
-            <TextView
-                android:id="@+id/yesParcel"
+            <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="parcel arrival"
-                android:textSize="30dp"
-                android:visibility="visible"
-                android:layout_marginTop="@dimen/marginTop1"
-                android:layout_marginLeft="@dimen/marginLeft1"
-                />
+                android:layout_height="match_parent"
+                android:id="@+id/rv"
+                android:scrollbarFadeDuration="0"
+                android:scrollbarSize="5dp"
+                android:scrollbarThumbVertical="@android:color/darker_gray"
+                android:scrollbars="vertical"
+                android:layout_weight="1">
 
-            <TextView
-                android:id="@+id/informationT"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/marginLeft1"
-                android:layout_marginTop="@dimen/marginTop2"
-                android:text="information of parcel"
-                android:textSize="23dp"
-                />
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:id="@+id/waybillT"-->
-<!--                android:textSize="20dp"-->
-<!--                android:textColor="@color/black"-->
-<!--                android:text="waybill_"-->
-<!--                android:layout_marginLeft="@dimen/marginLeft1"-->
-<!--                android:layout_marginTop="@dimen/marginTop1"-->
-<!--                />-->
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:id="@+id/recipientT"-->
-<!--                android:textSize="20dp"-->
-<!--                android:textColor="@color/black"-->
-<!--                android:text="recipient_"-->
-<!--                android:layout_marginLeft="@dimen/marginLeft1"-->
-<!--                android:layout_marginTop="@dimen/marginTop1"-->
-<!--                />-->
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:id="@+id/addressT"-->
-<!--                android:textSize="20dp"-->
-<!--                android:textColor="@color/black"-->
-<!--                android:text="address_"-->
-<!--                android:layout_marginLeft="@dimen/marginLeft1"-->
-<!--                android:layout_marginTop="@dimen/marginTop1"-->
-<!--                />-->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/marginLeft1"
-                android:layout_marginTop="@dimen/marginTop1"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/checkT"
-                    android:textSize="20dp"
-                    android:textColor="@color/black"
-                    android:text="Is it your parcel?"
-
-                    />
-                <RadioGroup
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/marginLeft1"
-                    android:orientation="horizontal">
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="yes"
-                        android:id="@+id/rightParcel"/>
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="no"
-                        android:id="@+id/wrongParcel"/>
-                </RadioGroup>
-            </LinearLayout>
+            </androidx.recyclerview.widget.RecyclerView>
         </LinearLayout>
         <TableLayout
             android:layout_width="match_parent"
