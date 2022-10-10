@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CustomViewHolder> {
     private ArrayList<MainData> arrayList;
+
     public  MainAdapter(ArrayList<MainData> arrayList){
         this.arrayList = arrayList;
     }
@@ -36,6 +37,18 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CustomViewHold
         holder.rightParcel.setText(arrayList.get(position).getRightParcel());
         holder.wrongParcel.setText(arrayList.get(position).getWrongParcel());
 
+        holder.rightParcel.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Toast.makeText(v.getContext(),"yes",Toast.LENGTH_SHORT).show();
+            }
+        });
+        holder.wrongParcel.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Toast.makeText(v.getContext(),"no",Toast.LENGTH_SHORT).show();
+            }
+        });
         holder.itemView.setTag(position);
         holder.itemView.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -70,6 +83,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CustomViewHold
         protected TextView textArrival;
         protected TextView textInformation;
         protected TextView checkT;
+        protected RecyclerView recyclerViewR;
         protected RadioButton rightParcel;
         protected RadioButton wrongParcel;
 
@@ -81,23 +95,6 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CustomViewHold
             this.checkT = (TextView) itemView.findViewById(R.id.checkT);
             this.rightParcel = (RadioButton) itemView.findViewById(R.id.rightParcel);
             this.wrongParcel = (RadioButton) itemView.findViewById(R.id.wrongParcel);
-
-//            rightParcel.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    Toast.makeText(this, "It will be processed as a received parcel. Thank you.", Toast.LENGTH_SHORT).show();
-//                    Vibrator vib = (Vibrator) getSystemService(VIBRATOR_SERVICE);
-//                    vib.vibrate(1000);
-//                }
-//            });
-//            wrongParcel.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    Toast.makeText(getApplicationContext(), "It is not your parcel.", Toast.LENGTH_SHORT).show();
-//                    Vibrator vib = (Vibrator) getSystemService(VIBRATOR_SERVICE);
-//                    vib.vibrate(1000);
-//                }
-//            });
         }
     }
 }

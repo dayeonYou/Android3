@@ -12,7 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:layout_marginBottom="15dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -38,9 +39,11 @@
                 android:scrollbarSize="5dp"
                 android:scrollbarThumbVertical="@android:color/darker_gray"
                 android:scrollbars="vertical"
-                android:layout_weight="1">
-
+                android:layout_weight="1"
+                android:visibility="gone"
+               >
             </androidx.recyclerview.widget.RecyclerView>
+
         </LinearLayout>
         <TableLayout
             android:layout_width="match_parent"

@@ -12,14 +12,15 @@ public class MainData {
     private String checkT;
     private String rightParcel;
     private String wrongParcel;
-    //alt+insert
-    public MainData(int iv_profile, String textArrival, String textInformation, String checkT, String rightParcel, String wrongParcel){
+        //alt+insert
+    public MainData(int iv_profile, String textArrival, String textInformation, String checkT,String rightParcel, String wrongParcel){
         this.iv_profile = iv_profile;
         this.textArrival = textArrival;
         this.textInformation = textInformation;
         this.checkT = checkT;
         this.rightParcel = rightParcel;
         this.wrongParcel = wrongParcel;
+
     }
     public int getIv_profile(){
         return iv_profile;
@@ -54,7 +55,8 @@ public class MainData {
     public String getWrongParcel(){
         return wrongParcel;
     }
-    public void setWrongParcelParcel(String wrongParcel){
+    public void setWrongParcel(String wrongParcel){
         this.wrongParcel = wrongParcel;
     }
+
 }

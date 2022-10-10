@@ -30,8 +30,9 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<MainData> arrayList;
     private MainAdapter mainAdapter;
     private RecyclerView recyclerView;
+    private RecyclerView recyclerViewR;
     private LinearLayoutManager linearLayoutManager;
-    private String contentText2 = "운송장_1234567890 받는분_홍*동 주소_경기도 화성시 운송장2_123456789 받는분_김*수 주소_서울시 마포구";
+    //private String contentText2 = "운송장_1234567890 받는분_홍*동 주소_경기도 화성시 운송장2_123456789 받는분_김*수 주소_서울시 마포구";
     private String contentText = "받는분_홍*동 운송장_1234567890 주소_경기도 화성시 받는분_김*수 운송장2_123456789 주소_서울시 마포구";
     private ArrayList<String> contentTextArray = new ArrayList<>();
     @Override
@@ -84,21 +85,14 @@ public class MainActivity extends AppCompatActivity {
             default:
                 break;
         }
-        int count=0;
         //서버에서 openCV로 추출한 텍스트 가져와서 저장
-        String contentText = "운송장_1234567890 받으시는 분_홍*동 주소_경기도 화성시 운송장2_123456789 받으시는 분_김*수 주소_서울시 마포구";
         //택배의 개수만큼 문자열 배열에 따로 따로 저장하기 위한 문자열 배열 생성
-        ArrayList<String> contentTextArray = new ArrayList<>();
         //택배의 개수를 운송장이라는 단어로 선별
-        count = countParcel(contentText);
-        for(int i=count;i>=0;i--){
-            String result = returnString(contentText,count);
-            contentTextArray.add(result);
-        }
-        //contentText.add("운송장_1234567890 받으시는 분_홍*동 주소_경기도 화성시");
         boolean b = contentText.contains("운송장");
+
         TextView mainText1 = (TextView) findViewById(R.id.noParcel);
         RecyclerView rv = (RecyclerView) findViewById(R.id.rv);
+
         if(b){ //받은 택배 있음
             mainText1.setVisibility(View.GONE);
             rv.setVisibility(View.VISIBLE);
@@ -112,39 +106,23 @@ public class MainActivity extends AppCompatActivity {
             mainAdapter = new MainAdapter(arrayList);
             recyclerView.setAdapter(mainAdapter);
 
+            int count = countParcel(contentText);
             for(int i=1;i<=count;i++){
                 String result = returnString(contentText,i);
                 contentTextArray.add(result);
             }
             for(int i=0;i<count;i++){
-                MainData mainData = new MainData(R.mipmap.ic_launcher,"Parcel Arrival","Information of Parcel\n"+contentTextArray.get(i),"Is it your parcel?", "yes","no");
+                MainData mainData = new MainData(R.mipmap.ic_launcher,"Parcel Arrival","Information of Parcel\n"+contentTextArray.get(i),"Is it your parcel?","yes","no");
                 arrayList.add(mainData);
                 mainAdapter.notifyDataSetChanged();
             }
 
-//            RadioButton rightParcelBtn = (RadioButton) findViewById(R.id.rightParcel);
-//            rightParcelBtn.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    Toast.makeText(getApplicationContext(), "It will be processed as a received parcel. Thank you.", Toast.LENGTH_SHORT).show();
-//                    Vibrator vib = (Vibrator) getSystemService(VIBRATOR_SERVICE);
-//                    vib.vibrate(1000);
-//                }
-//            });
-//            RadioButton wrongParcelBtn = (RadioButton) findViewById(R.id.wrongParcel);
-//            wrongParcelBtn.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    Toast.makeText(getApplicationContext(), "It is not your parcel.", Toast.LENGTH_SHORT).show();
-//                    Vibrator vib = (Vibrator) getSystemService(VIBRATOR_SERVICE);
-//                    vib.vibrate(1000);
-//                }
-//            });
         }
         else{ //받은 택배 없음
             mainText1.setVisibility(View.VISIBLE);
             rv.setVisibility(View.GONE);
         }
+
     }
 
     private boolean isConnected() {
