@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
@@ -22,7 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.w3c.dom.Text;
-
+import androidx.appcompat.app.AlertDialog;
 import java.lang.*;
 import java.util.ArrayList;
 
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<MainData> arrayList;
     private MainAdapter mainAdapter;
     private RecyclerView recyclerView;
-    private RecyclerView recyclerViewR;
+
     private LinearLayoutManager linearLayoutManager;
     //private String contentText2 = "운송장_1234567890 받는분_홍*동 주소_경기도 화성시 운송장2_123456789 받는분_김*수 주소_서울시 마포구";
     private String contentText = "받는분_홍*동 운송장_1234567890 주소_경기도 화성시 받는분_김*수 운송장2_123456789 주소_서울시 마포구";
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         setTitle("ONMAJU");
         Button btn1 = (Button) findViewById(R.id.btn1);
         Button btn2 = (Button) findViewById(R.id.btn2);
@@ -124,7 +126,37 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+    @Override
+    public void onBackPressed() {
+        // Create the object of AlertDialog Builder class
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
 
+        // Set the message show for the Alert time
+        builder.setMessage("Do you want to exit ?");
+
+        // Set Alert Title
+        builder.setTitle("Alert !");
+
+        // Set Cancelable false for when the user clicks on the outside the Dialog Box then it will remain show
+        builder.setCancelable(false);
+        // Set the Negative button with No name Lambda OnClickListener method is use of DialogInterface interface.
+        builder.setNegativeButton("No", (DialogInterface.OnClickListener) (dialog, which) -> {
+            // If user click no then dialog box is canceled.
+            dialog.cancel();
+        });
+        // Set the positive button with yes name Lambda OnClickListener method is use of DialogInterface interface.
+        builder.setPositiveButton("Yes", (DialogInterface.OnClickListener) (dialog, which) -> {
+            // When the user click yes button then app will close
+            finish();
+        });
+
+
+
+        // Create the Alert dialog
+        AlertDialog alertDialog = builder.create();
+        // Show the Alert Dialog box
+        alertDialog.show();
+    }
     private boolean isConnected() {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetWork = cm.getActiveNetworkInfo();
@@ -155,5 +187,6 @@ public class MainActivity extends AppCompatActivity {
         }
         return result;
     }
+
 
 }
